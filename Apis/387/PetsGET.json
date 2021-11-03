@@ -1,0 +1,66 @@
+{
+  "Name": "Pets",
+  "Description": "Returns the information of all Pet records in JSON object format.",
+  "HttpMethod": "GET",
+  "IsEnabled": true,
+  "OrderIndex": 23,
+  "CrossDomainPolicy": "PortalAliasesOnly",
+  "Input": [
+    {
+      "Name": "RowLimit",
+      "IsDeleted": false,
+      "IsEnabled": true,
+      "OrderIndex": 0,
+      "Parameters": {},
+      "InputTypeStr": "number",
+      "Validations": [
+        {
+          "Data": "{\"Message\":\"RowLimit is required.\"}",
+          "Type": "default-required",
+          "IsDeleted": false,
+          "IsEnabled": false,
+          "OrderIndex": 0,
+          "Metadata": {
+            "PAP_InternalIdentifier": "Api.InputField.RequiredValidator"
+          }
+        }
+      ]
+    }
+  ],
+  "Actions": [
+    {
+      "ActionType": "PlantAnApp.ReadAllEntity.d7126aad-3130-49e3-a665-772d3b960b28",
+      "OrderIndex": 0,
+      "Parameters": {
+        "OutputToken": "Pets",
+        "RowLimit": "[RowLimit]"
+      },
+      "IsEnabled": true,
+      "ExecutionType": "OnExecute",
+      "Metadata": {
+        "PAP_InternalIdentifier": "Api.ReadAllEntityRecords",
+        "EntityIdentifier": "d7126aad-3130-49e3-a665-772d3b960b28"
+      }
+    },
+    {
+      "ActionType": "RawResponse",
+      "OrderIndex": 1,
+      "Parameters": {
+        "HttpCode": "200 OK",
+        "Content": "{\"Pets\" : [Pets:json]}",
+        "Headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ]
+      },
+      "IsEnabled": true,
+      "ExecutionType": "OnExecute",
+      "Metadata": {
+        "PAP_InternalIdentifier": "Api.RawResponse"
+      }
+    }
+  ],
+  "OnErrorActions": []
+}
